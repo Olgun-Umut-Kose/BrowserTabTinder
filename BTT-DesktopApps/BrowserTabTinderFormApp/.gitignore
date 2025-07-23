@@ -1,0 +1,14 @@
+.vs/
+**/.vs/
+
+**/obj/
+**/bin/
+
+
+*.suo
+*.user
+*.VC.db
+
+**/*.suo
+**/*.user
+**/*.VC.db

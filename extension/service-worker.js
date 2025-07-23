@@ -4,10 +4,30 @@
 chrome.tabs.query({}, (tabs) => {
 
     console.log(tabs)
-
+    takePicture(2144055059,2144055051)
+    //moveWindowToTop(2144055051)
     
 
 });
+
+async function moveWindowToTop(windowid) {
+  
+
+  const uwindow = await new Promise((resolve, reject) => {
+chrome.windows.update(windowid,{focused:true},async (uwindow) => {
+
+        
+    if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else {
+          resolve(utab);
+        }
+
+        
+
+    })
+})
+}
 
 async function takePicture(tabid,windowid) {
     const utab = await new Promise((resolve, reject) => {
@@ -24,6 +44,9 @@ chrome.tabs.update(tabid,{active: true,highlighted:true},async (utab) => {
 
     })
 })
+
+console.log(utab)
+
     await new Promise(r => setTimeout(r, 500));
 
     const base64Url = await new Promise((resolve, reject) => {
@@ -37,4 +60,6 @@ chrome.tabs.update(tabid,{active: true,highlighted:true},async (utab) => {
         }
       });
     });
+
+    console.log(base64Url)
 }
