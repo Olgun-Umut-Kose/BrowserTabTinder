@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Starter));
             label1 = new Label();
             button1 = new Button();
             SuspendLayout();
@@ -35,15 +36,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(120, 20);
+            label1.Location = new Point(69, 14);
             label1.Name = "label1";
-            label1.Size = new Size(170, 105);
+            label1.Size = new Size(261, 120);
             label1.TabIndex = 0;
-            label1.Text = "Please install extension,\r\nselect one window,\r\nand minimize selected window\r\n\r\n\r\nIf sure this steps completed\r\npress \"Start\" button";
+            label1.Text = resources.GetString("label1.Text");
             // 
             // button1
             // 
-            button1.Location = new Point(129, 170);
+            button1.Enabled = false;
+            button1.Location = new Point(122, 146);
             button1.Name = "button1";
             button1.Size = new Size(127, 59);
             button1.TabIndex = 1;
@@ -63,6 +65,7 @@
             Name = "Starter";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Starter";
+            Load += Starter_Load;
             ResumeLayout(false);
             PerformLayout();
         }

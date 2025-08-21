@@ -6,11 +6,24 @@
     "permissions": [
         "tabs",
         "scripting",
-        "activeTab"
+        "windows",
+        "activeTab",
+        "debugger"
     ],
     "host_permissions": [
-        "ws://127.0.0.1:8089/",
+        "ws://127.0.0.1:9988/",
         "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content-script.js"
+            ],
+            "run_at": "document_start"
+        }
     ],
     "background": {
         "service_worker": "service-worker.js"

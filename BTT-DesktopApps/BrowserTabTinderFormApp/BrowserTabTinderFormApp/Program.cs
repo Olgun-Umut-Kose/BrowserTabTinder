@@ -6,6 +6,7 @@ namespace BrowserTabTinderFormApp
         public const int SC_RESTORE = 0xF120;
         public const int SC_SIZE = 0xF000;
         public const int SC_MOVE = 0xF010;
+        public static WebSocketServer webSocketServer = new WebSocketServer();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -16,6 +17,7 @@ namespace BrowserTabTinderFormApp
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Starter());
+            
         }
     }
 }
