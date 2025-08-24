@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
+﻿using System.Net;
 using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BrowserTabTinderFormApp
 {
@@ -27,6 +20,7 @@ namespace BrowserTabTinderFormApp
         public WebSocketServer(string url = "http://localhost:9988/ws/")
         {
             httpListener.Prefixes.Add(url);
+            httpListener.TimeoutManager.IdleConnection = TimeSpan.FromDays(0.5);
             httpListener.Start();
 
 
@@ -44,7 +38,7 @@ namespace BrowserTabTinderFormApp
 
                 if (httpContext.Request.IsWebSocketRequest)
                 {
-                    var wsContext = await httpContext.AcceptWebSocketAsync(null);
+                    var wsContext = await httpContext.AcceptWebSocketAsync(null,TimeSpan.FromSeconds(30));
                     Socket = wsContext.WebSocket;
                     IsConnected = true;
                     OnSocketConnected?.Invoke(null, null);
@@ -105,8 +99,9 @@ namespace BrowserTabTinderFormApp
 
         public async Task SendStringMessage(string message)
         {
-            if (!IsConnected || Socket is null)
+            if (!IsConnected || Socket is null || Socket.State != WebSocketState.Open)
             {
+                OnSocketDisconnected?.Invoke(null, null);
                 return;
             }
             var data = Encoding.UTF8.GetBytes(message);

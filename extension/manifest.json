@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "BrowserTab-Tinder",
     "description": "Quickly organize Chrome-based browser tabs with a Tinder-like desktop app",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "permissions": [
         "tabs",
         "scripting",

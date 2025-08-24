@@ -16,5 +16,9 @@ namespace BrowserTabTinderFormApp
         public string Url { get; set; }
 
         public string ImageB64 { get; set; }
+
+        public long TabCount { get; set; }
+
+        public long CompletedTabCount { get; set; }
     }
 }

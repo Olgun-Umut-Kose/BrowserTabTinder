@@ -21,7 +21,7 @@ chrome.tabs.query({}, async (tabs) => {
           }
           while (true) {
             try {
-              await sendTabData(tabs[currentTabIndex +1]);
+              await sendTabData(tabs[currentTabIndex +1],currentTabIndex +1,tabs.length);
               break;
             } catch (error) {
               // for "chrome://" url 
@@ -33,7 +33,14 @@ chrome.tabs.query({}, async (tabs) => {
           }
           break;
         case "reload":
-          sendTabData(tabs[currentTabIndex]);
+          await sendTabData(tabs[currentTabIndex],currentTabIndex +1,tabs.length);
+          break;
+
+        case "focus":
+          await moveWindowToTop(tabs[currentTabIndex].windowId)
+          break;
+        case "delete":
+          await closeTab(tabs[currentTabIndex].id)
           break;
         default:
           break;
@@ -41,11 +48,9 @@ chrome.tabs.query({}, async (tabs) => {
     }, 600);
   };
   console.log(tabs);
-  takePicture(2144055059, 2144055051);
-  //moveWindowToTop(2144055051)
 });
 
-async function sendTabData(tab) {
+async function sendTabData(tab,index,count) {
   console.log("currentTab", tab);
  try {
   const imageb64 = await captureWhenReady(tab.id, tab.windowId);
@@ -57,7 +62,9 @@ async function sendTabData(tab) {
         windowid: tab.windowId,
         title: tab.title,
         url: tab.url,
-        imageb64
+        imageb64,
+        completedtabcount: index,
+        tabcount: count 
       },
     })
   );
@@ -66,6 +73,13 @@ async function sendTabData(tab) {
  }
   
   
+}
+
+
+async function closeTab(tabId) {
+
+  await chrome.tabs.remove(tabId)
+
 }
 
 async function moveWindowToTop(windowid) {

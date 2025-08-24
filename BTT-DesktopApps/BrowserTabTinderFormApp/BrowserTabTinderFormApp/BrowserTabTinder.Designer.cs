@@ -39,6 +39,7 @@
             button2 = new Button();
             pictureBox1 = new PictureBox();
             toolTip1 = new ToolTip(components);
+            label2 = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -87,6 +88,7 @@
             button4.TabIndex = 2;
             button4.Text = "Reload Image";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button1
             // 
@@ -98,6 +100,7 @@
             button1.TabIndex = 0;
             button1.Text = "Open Window";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -110,7 +113,7 @@
             label1.Padding = new Padding(5);
             label1.Size = new Size(586, 26);
             label1.TabIndex = 1;
-            label1.Text = "\"https://rog.asus.com/tr/motherboards/rog-strix/rog-strix-b550-f-gaming-model/helpdesk_manual/\"";
+            label1.Text = "\"URL\"";
             // 
             // tableLayoutPanel3
             // 
@@ -149,9 +152,11 @@
             button2.TabIndex = 1;
             button2.Text = "Keep";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.ActiveCaptionText;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(82, 4);
             pictureBox1.Margin = new Padding(0, 4, 0, 0);
@@ -166,6 +171,20 @@
             // toolTip1
             // 
             toolTip1.IsBalloon = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Segoe UI", 40F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(50, 50);
+            label2.Name = "label2";
+            label2.Size = new Size(209, 72);
+            label2.TabIndex = 0;
+            label2.Text = "☜(ﾟヮﾟ☜)";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // BrowserTabTinder
             // 
@@ -199,5 +218,7 @@
         private PictureBox pictureBox1;
         private Button button4;
         private ToolTip toolTip1;
+        
+        private Label label2;
     }
 }
